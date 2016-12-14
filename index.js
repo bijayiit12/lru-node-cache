@@ -5,16 +5,16 @@ function lruNodeCatch(numberOfFrames, deleteNoOfFrames) {
 	this.set = function(key, value) {
 		if (!cacheObj[key])
 			count += 1;
-		//cacheObj[key] = {value: value, ts: new Date().getTime()};
-		cacheObj[key] = {value: value, ts: parseInt(10 + Math.random()*100)};
+		cacheObj[key] = {value: value, ts: new Date().getTime()};
+		//cacheObj[key] = {value: value, ts: parseInt(10 + Math.random()*100)};
 		if (count > numberOfFrames) {
 			count -= deleteNoOfFrames;
 			me.deleteKeys();
 		}
 	}
 	this.get = function(key) {
-		//cacheObj[key].ts = new Date().getTime();
-		cacheObj[key].ts =  parseInt(10 + Math.random()*100);
+		cacheObj[key].ts = new Date().getTime();
+		//cacheObj[key].ts =  parseInt(10 + Math.random()*100);
 		return cacheObj[key].value;
 	}
 	this.deleteKeys = function () {
