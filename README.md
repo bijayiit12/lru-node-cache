@@ -37,7 +37,7 @@ Output should be "your data"
 		here n = 6, k = 3
 
 	and your data is 
-		(1, 3, 2, 7, 8, 9, 4, 7, 0, 7, 5, 6, 2) which need to be stored  
+		(1, 3, 2, 7, 8, 9, 4, 7, 0, 7, 5, 6, 2) which need to be cached  
 
 
 		1	3	2	7	8	9	4	7	0	7	5	6	2
@@ -45,8 +45,8 @@ Output should be "your data"
 		1	1	1	1	1	1	7	8	8	8	8	0	0
 			3	3	3	3	3	8	9	9	9	9	7	7
 				2	2	2	2	9	4	4	4	4	5	5
-					7	7	7	4	7	7	0	0	6	2
-						8	8			0	7	7
+					7	7	7	4	7	7	0	0	6	6
+						8	8			0	7	7		2
 							9					5
 
   
