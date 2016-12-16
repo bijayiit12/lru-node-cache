@@ -1,11 +1,12 @@
 var DoublyLinkListOperation = require('./lib/DoublyLinkList.js');
 function LRU(maxNoOfFrames) {
-	var max = (maxNoOfFrames < 0 ? -maxNoOfFrames : maxNoOfFrames) || 100;
+	maxNoOfFrames = typeof maxNoOfFrames == "string" ? parseInt(maxNoOfFrames) : maxNoOfFrames;
+	var max = (maxNoOfFrames && (maxNoOfFrames < 0 ? -maxNoOfFrames : maxNoOfFrames)) || 100;
 	var count = 0;
 	var cacheObj = {};
 	var DLLO = new DoublyLinkListOperation();
-	this.get = function() {
-		return cacheObj[key].data;
+	this.get = function(key) {
+		return cacheObj[key] && cacheObj[key].data;
 	}
 	this.set = function(key, data) {
 		if (cacheObj[key]) {
@@ -18,6 +19,7 @@ function LRU(maxNoOfFrames) {
 			if (count >= max) {
 				var deletedKey = DLLO.dequeue();
 				delete cacheObj[deletedKey];
+				return deletedKey;
 			} else {
 				count += 1;
 			}
@@ -37,6 +39,7 @@ function LRU(maxNoOfFrames) {
 		cacheObj = {};
 		DLLO.deleteAllKeys();
 		count = 0;
+		return "sucess";
 	}
 }
 module.exports = {LRU: LRU};
