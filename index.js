@@ -1,3 +1,45 @@
+var DoublyLinkListOperation = require('./lib/DoublyLinkList.js');
+function LRU(maxNoOfFrames) {
+	var max = (maxNoOfFrames < 0 ? -maxNoOfFrames : maxNoOfFrames) || 100;
+	var count = 0;
+	var cacheObj = {};
+	var DLLO = new DoublyLinkListOperation();
+	this.get = function() {
+		return cacheObj[key].data;
+	}
+	this.set = function(key, data) {
+		if (cacheObj[key]) {
+			cacheObj[key].data = data;
+			DLLO.adjustNode(cacheObj[key]);
+		}
+		else {
+			cacheObj[key] = {data: data, cacheKey: key};
+			DLLO.enqueue(cacheObj[key]);
+			if (count >= max) {
+				var deletedKey = DLLO.dequeue();
+				delete cacheObj[deletedKey];
+			} else {
+				count += 1;
+			}
+		}
+	}
+	this.getAllKeys = function() {
+		return Object.keys(cacheObj);
+	}
+	this.deleteOneKey = function(key) {
+		if (!cacheObj[key])
+			return;
+		DLLO.deleteOneKey(cacheObj[key]);
+		delete cacheObj[key];
+		count -= 1;
+	}
+	this.deleteAllKeys = function () {
+		cacheObj = {};
+		DLLO.deleteAllKeys();
+		count = 0;
+	}
+}
+module.exports = {LRU: LRU};
 /*function lruNodeCatch(numberOfFrames, deleteNoOfFrames) {
 	var cacheObj = {};
 	var count = 0;
@@ -51,76 +93,3 @@
 		}
 	}
 }*/
-function DoublyLinkListOperation() {
-	var endPtr = {head: null, end: null};
-	var me = this;
-	this.enqueue = function(obj) {
-		if (endPtr.head) {
-			endPtr.end.next = obj;
-			obj.pre = endPtr.end;
-			endPtr.end = obj;
-		} else {
-			endPtr.end = obj;
-			endPtr.head = obj;
-		}
-	}
-	this.dequeue = function () {
-		var deletedkey = endPtr.head.cacheKey;
-		endPtr.head = endPtr.head.next;
-		return deletedkey;
-	}
-	this.adjustNode = function (obj) {
-		debugger;
-		if (!obj.next)
-			return;
-		obj.pre ? (obj.pre.next = obj.next) : (endPtr.head = obj.next);
-		obj.next && (obj.next.pre = obj.pre);
-		obj.next = null;
-		me.enqueue(obj);
-	}
-	this.deleteOneKey = function(obj) {
-		DLLO.deleteOneKey(cacheObj[key]);
-		delete cacheObj[key];
-	}
-	this.deleteAllKeys = function () {
-		endPtr = {};
-	}
-}
-function LRU(maxNoOfFrames) {
-	var max = (maxNoOfFrames < 0 ? -maxNoOfFrames : maxNoOfFrames) || 100;
-	var count = 0;
-	var cacheObj = {};
-	var DLLO = new DoublyLinkListOperation();
-	this.get = function() {
-		return cacheObj[key].data;
-	}
-	this.set = function(key, data) {
-		if (cacheObj[key])
-			DLLO.adjustNode(cacheObj[key]);
-		else {
-			cacheObj[key] = {data: data, cacheKey: key};
-			DLLO.enqueue(cacheObj[key]);
-			if (count >= max) {
-				var deletedKey = DLLO.dequeue();
-				delete cacheObj[key];
-			} else {
-				count += 1;
-			}
-		}
-	}
-	this.getAllKeys = function() {
-		return Object.keys(cacheObj);
-	}
-	this.deleteOneKey = function(key) {
-		if (!cacheObj[key])
-			return;
-		DLLO.deleteOneKey(cacheObj[key]);
-		delete cacheObj[key];
-	}
-	this.deleteAllKeys = function () {
-		cacheObj = {};
-		DLLO.deleteAllKeys();
-		count = 0;
-	}
-}
-module.exports = {LRU: LRU};
