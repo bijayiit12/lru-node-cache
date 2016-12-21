@@ -1,6 +1,6 @@
 {
   "name": "lru-node-cache",
-  "version": "1.3.3",
+  "version": "1.4.4",
   "description": "This Package enable you to perform all cache operation in O(1) Time Complexcity",
   "main": "index.js",
   "scripts": {

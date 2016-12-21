@@ -18,8 +18,9 @@ function LRU(maxNoOfFrames) {
 			DLLO.enqueue(cacheObj[key]);
 			if (count >= max) {
 				var deletedKey = DLLO.dequeue();
+				var back = cacheObj[deletedKey];
 				delete cacheObj[deletedKey];
-				return deletedKey;
+				return back;
 			} else {
 				count += 1;
 			}
