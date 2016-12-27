@@ -20,7 +20,8 @@ function LRU(maxNoOfFrames) {
 				var deletedKey = DLLO.dequeue();
 				var back = cacheObj[deletedKey];
 				delete cacheObj[deletedKey];
-				return back;
+				back.pre = back.next = null;
+				return back.data;
 			} else {
 				count += 1;
 			}
