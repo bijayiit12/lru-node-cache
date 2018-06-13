@@ -16,47 +16,8 @@ A small library that is independent of other node-module and node version that p
 
 
 
-## Usage
+## How to use it
 
-    var cache = require('lru-node-cache');
+    Visit This link to know more
 
-    var lncObj = new cache.LRU(4);  // where n = 4 size of frame (maximum no of keys you want to keep in cache at a time)
-
-    var deletedObj = lncObj.set("your key", "your data");//set method automatic delete the least used
-
-    if (deletedObj) {
-    	//do whatever you want with deleted object.
-    }
-
-    lncObj.get("your key");
-
-Output should be "your data"
-
-## Methods
-
-* `set` Used to set data on cache. This method automatic delete the least used data when cache is full and return deleted object (if deleted). example ==> var deletedObj = lncObj.set("your key", "your data"). Time Complexcity => O(1)`.
-* `get` Used to get data from cache. example ==> lncObj.get("your key"). Time Complexcity => O(1)`.
-* `getAllKeys` Used to retrieve all keys from cache. example ==> lncObj.getAllKeys(). `.
-* `deleteOneKey` Used to delete only one key from cache. example ==> lncObj.deleteOneKey("your key"). Time Complexcity => O(1)`.
-* `deleteAllKeys` Used to delete all keys from cache. example ==> lncObj.deleteAllKeys(). Time Complexcity => O(1)`.
-
-## How it works..
-
-	suppose you have created var lncObj = new cache.LRU(4)
-
-		here n = 4
-
-	and your data is 
-		(1, 3, 2, 7, 8, 9, 4, 7, 0, 7, 5, 6, 2) which need to be cached  
-
-
-		1	3	2	7	8	9	4	7	0	7	5	5	0
-		===	===	===	===	===	===	===	===	===	===	===	===	=	
-		1	1	1	1	3	2	7	8	9	9	4	4	4
-			3	3	3	2	7	8	9	4	4	0	0	7
-				2	2	7	8	9	4	7	0	7	7	5
-					7	8	9	4	7	0	7	5	5	0
-														
-												
-
-  
+    [[Working Explanation of lru-node-cache|http://blog.3two5.com/temp/lruNodeCache.html]]s
