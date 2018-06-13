@@ -20,4 +20,4 @@ A small library that is independent of other node-module and node version that p
 
     Visit This link to know more
 
-    [[Working Explanation of lru-node-cache|http://blog.3two5.com/temp/lruNodeCache.html]]s
+    [Working Explanation of lru-node-cache](http://blog.3two5.com/temp/lruNodeCache.html)
