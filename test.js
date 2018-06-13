@@ -20,13 +20,3 @@ console.log("all key " + JSON.stringify(lncObj.get(21)));
 console.log("all key " + JSON.stringify(lncObj.getAllKeys()));
 console.log("delete one key " + JSON.stringify(lncObj.deleteOneKey(1)));
 console.log("delete all key " + JSON.stringify(lncObj.deleteAllKeys(1)));
-/*for (var i = 0; i < arr.length; i += 1) {
-	debugger;
-	var ran = Math.round(10*Math.random());
-	lnc.set(arr[i], ran);
-}*/
-/*for (var i = 0; i < max; i += 1) {
-	debugger;
-	var val = lncObj1.get(i);
-	console.log("val ==> " + val);
-}*/
