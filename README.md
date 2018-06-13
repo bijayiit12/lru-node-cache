@@ -25,6 +25,6 @@ A small library that is independent of other node-module and node version that p
 
 # How to use it
 
-	Visit This link to know more
+Visit This link to know more
 
-	**Please [Working Explanation of lru-node-cache](http://blog.3two5.com/temp/lruNodeCache.html)**
+**Please [Working Explanation of lru-node-cache](http://blog.3two5.com/temp/lruNodeCache.html)**
